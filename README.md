@@ -12,7 +12,7 @@
 <p>&nbsp;</p>
 <h3>html</h3>
 <p>简单清晰，样式神马扩展性比较高，随意定制</p>
-<pre>
+<code>
 <div id="slide" class="slide">
 	<ul>
 		<li class="page1"></li>
@@ -20,10 +20,10 @@
 		<li class="page3"></li>
 	</ul>
 </div>
-</pre>
+</code>
 <h3>css</h3>
 <p>简单写了一点，全屏自适应的css</p>
-<pre>
+<code>
 	<style>
 	*{margin: 0; padding: 0;}
 	ul,li{list-style: none;}
@@ -55,18 +55,18 @@
 	.slide-dot span.z-sel{background: #000;}
 
 	/* 左右切换按钮 */
-	.prev,
+	.codev,
 	.next{position: absolute; top: 50%; margin-top: -50px;width: 50px; height: 100px; line-height: 100px; font-size: 30px; color: #333; text-align: center; font-weight: bold; text-decoration: none; background: #fff; border-radius: 5px;}
-	.prev{left: 10px;}
+	.codev{left: 10px;}
 	.next{right: 10px;}
-	.prev:hover,
+	.codev:hover,
 	.next:hover{color: #fff;background: #333;}
 	</style>
-</pre>
+</code>
 <h3>js</h3>
 <p>可配置参数蛮齐全的，有不明白的地方欢迎联系我！</p>
 <p>需要引入jquery文件以及插件本身。</p>
-<pre>
+<code>
 <script src="src/jquery.min.js"></script>
 <script src="src/jquery.littleSlideFade.min.js"></script>
 <script>
@@ -93,7 +93,7 @@ $(function(){
         // 是否显示左右切换按钮
         hasBtn : true,
         // 上一个按钮class
-        prevClass : 'prev',
+        codevClass : 'codev',
         // 下一个按钮class
         nextClass : 'next',
         // 是否支持触摸
@@ -107,4 +107,4 @@ $(function(){
 	});
 });
 </script>
-</pre>
+</code>
