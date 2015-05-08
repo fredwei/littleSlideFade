@@ -1,3 +1,17 @@
+/**
+ * littleSlideFade 1.0.6
+ * 
+ * https://github.com/fredwei/littleSlideFade
+ * 
+ * my website
+ * 这是我的个人网站
+ * http://fredwei.com/
+ * 
+ * Licensed under MIT
+ * 
+ * Released on: March 6, 2015
+ */
+
 (function ($) {
     $.fn.littleSlideFade = function(options){
 
@@ -30,6 +44,8 @@
             hasTouch : true,
             // 在动画完成之前是否禁止切换
             isPauseAnimate : false,
+            // 子元素，默认li
+            chileDom : 'li',
             // 开始切换之前执行回调
             beforSlide : function(slide){},
             // 切换完成之后执行回调
@@ -45,15 +61,13 @@
         // 初始化
         function loadSlide(obj){
             // 轮播对象
-            obj.li = obj.find('li');
+            obj.li = obj.find(options.chileDom);
             // 轮播图数量
             obj.liLen = obj.li.length - 1;
             // 上一个
             obj.liPrev = options.startSlide - 1;
             // 当前
             obj.liActive = options.startSlide;
-            // 下一个
-            obj.liNext = options.startSlide + 1;
             // 自动轮播对象
             obj.autoTime = null;
             // 是否点击圆点
@@ -62,7 +76,7 @@
             obj.prevClicked = false;
 
             // 轮播图数量少于2个则不做处理
-            if(obj.liLen <= 1){
+            if(obj.liLen < 1){
                 obj.li.css({'opacity': 0, 'display': 'block'}).animate({'opacity': 1}, options.animateTime, options.animateEasing);
                 return false;
             }
@@ -119,7 +133,9 @@
             options.beforSlide(obj);
 
             // 圆点样式
-            obj.dotObj.find('span').eq(obj.liActive).addClass(options.dotActiveClass).siblings().removeClass(options.dotActiveClass);
+            if(options.hasDot){
+                obj.dotObj.find('span').eq(obj.liActive).addClass(options.dotActiveClass).siblings().removeClass(options.dotActiveClass);
+            }
 
             // 当前项隐藏
             obj.li.stop(true,true).eq(obj.liPrev).css({'opacity': 1}).animate({'opacity': 0}, options.animateTime, options.animateEasing, function(){
@@ -134,8 +150,6 @@
             // 上一张、活动项、下一张指向改变
             obj.liPrev = obj.liActive;
             obj.liActive = (obj.liActive>=obj.liLen) ? 0 : (obj.liActive + 1);
-            obj.liNext = obj.liActive + 1;
-            obj.liNext = (obj.liNext>=obj.liLen) ? 0 : obj.liNext;
 
             // 自动轮播
             if(options.auto){
